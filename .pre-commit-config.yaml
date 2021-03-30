@@ -1,0 +1,49 @@
+default_language_version:
+  python: python3.7
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.4.0
+    hooks:
+      - id: check-added-large-files
+      - id: fix-byte-order-marker
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: debug-statements
+      - id: check-yaml
+      - id: check-builtin-literals
+      - id: mixed-line-ending
+        args: [--fix, lf]
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: detect-aws-credentials
+        args: [--allow-missing-credentials]
+      - id: detect-private-key
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.11.0
+    hooks:
+      - id: pyupgrade
+        args: [--py37-plus]
+        exclude: backend_flask/db_migrations/versions
+  - repo: https://github.com/unimport/unimport
+    rev: "996b8ca342e7372e542220ae943764885be3f0cc"
+    hooks:
+      - id: unimport
+        args:
+          [--remove, --requirements, --include-star-import, --ignore-init, --gitignore]
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: "3.9.0"
+    hooks:
+      - id: flake8
+        additional_dependencies:
+           - flake8-comprehensions==3.4.0
+           - flake8-bugbear==21.3.2
+
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: "v5.8.0"
+    hooks:
+      - id: isort
+  - repo: https://github.com/psf/black
+    rev: "20.8b1"
+    hooks:
+      - id: black
+        language_version: python3.7

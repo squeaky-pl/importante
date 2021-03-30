@@ -1,10 +1,9 @@
-from pkgutil import walk_packages
+import concurrent.futures
 import subprocess
 import sys
-import concurrent.futures
+from pkgutil import walk_packages
 
 import test_package
-
 
 code = """
 import {name}
